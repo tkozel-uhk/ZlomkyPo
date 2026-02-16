@@ -7,10 +7,14 @@ public class Zlomek {
     /**
      * Defaultní konstruktor
      */
-    public Zlomek() {}
+    public Zlomek() {
+        citatel = 0;
+        jmenovatel = 1;
+    }
 
     /**
      * Konstruktor s dvěma parametry
+     *
      * @param citatel
      * @param jmenovatel musí být různý od 0
      */
@@ -23,6 +27,7 @@ public class Zlomek {
     public int getCitatel() {
         return citatel;
     }
+
     public int getJmenovatel() {
         return jmenovatel;
     }
@@ -31,15 +36,53 @@ public class Zlomek {
     public void setCitatel(int citatel) {
         this.citatel = citatel;
     }
+
     public void setJmenovatel(int jmenovatel) {
         this.jmenovatel = jmenovatel;
     }
 
     @Override
     public String toString() {
-        return String.format(
-             "%3d\n------\n%3d",
-             citatel,jmenovatel
-        );
+        return String.format("%d/%d",citatel, jmenovatel);
+    }
+
+    /**
+     * Metoda pro sčítání dvou zlomků
+     *
+     * @param druhy
+     * @return nový zlomek, který je souctem obou zlomků
+     */
+    public Zlomek plus(Zlomek druhy) {
+        int jm = jmenovatel * druhy.jmenovatel;
+        int cit = citatel * druhy.jmenovatel + druhy.citatel * jmenovatel;
+        return new Zlomek(cit, jm);
+    }
+
+    public Zlomek zkratit() {
+        int delitel = nsd(citatel, jmenovatel); // vypocet nejv. spol. delitele
+
+        return new Zlomek(citatel / delitel, jmenovatel / delitel);
+    }
+
+    /**
+     * Vypocet nejvetsiho spolecneho delitele cisel a a b
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    private int nsd(int a, int b) {
+        if (a < b) {
+            var pom = a;
+            a = b;
+            b = pom;
+        }
+        int zbytek;
+        do {
+            zbytek = a % b;
+            a = b;
+            b = zbytek;
+        } while (zbytek != 0);
+        return a;
     }
 }
