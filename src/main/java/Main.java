@@ -19,7 +19,28 @@ public class Main {
 
         var soucet = a.plus(b);
 
-        IO.println(soucet.zkratit());
+        IO.println("Soucet je %s".formatted(soucet.zkratit()));
+        //System.out.printf("Soucet je %s\n", soucet.zkratit());
+
+        Zlomek[] pole = new Zlomek[] {
+                new Zlomek(1,3),
+                new Zlomek(1,2),
+                new Zlomek(6,5),
+                new Zlomek(4,3),
+                new Zlomek(7,8),
+                new Zlomek(13,10)
+        };
+        Zlomek prumer = prumer(pole);
+        IO.println("Prumer je %s".formatted(prumer.zkratit()));
+    }
+
+    private static Zlomek prumer(Zlomek[] pole) {
+        var soucet = new Zlomek(); //nulovy zlomek
+        for (var z : pole) {
+            soucet = soucet.plus(z);
+        }
+        var pocet = new Zlomek(pole.length, 1);
+        return soucet.deleno(pocet);
     }
 
 }

@@ -58,6 +58,15 @@ public class Zlomek {
         return new Zlomek(cit, jm);
     }
 
+    //pretizene (overloaded) plus pro pricteni celeho cisla ke zlomku
+    public Zlomek plus(int cislo) {
+        int cit = citatel + jmenovatel * cislo;
+
+        return new Zlomek(cit, jmenovatel);
+    }
+
+
+
     public Zlomek zkratit() {
         int delitel = nsd(citatel, jmenovatel); // vypocet nejv. spol. delitele
 
@@ -84,5 +93,11 @@ public class Zlomek {
             b = zbytek;
         } while (zbytek != 0);
         return a;
+    }
+
+    public Zlomek deleno(Zlomek druhy) {
+        var cit = citatel * druhy.jmenovatel;
+        var jm = druhy.citatel * jmenovatel;
+        return new Zlomek(cit,jm);
     }
 }
