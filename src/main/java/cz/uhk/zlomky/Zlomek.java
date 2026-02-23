@@ -49,12 +49,34 @@ public class Zlomek {
     /**
      * Metoda pro sčítání dvou zlomků
      *
-     * @param druhy
+     * @param druhy druhý zlomek
      * @return nový zlomek, který je souctem obou zlomků
      */
     public Zlomek plus(Zlomek druhy) {
         int jm = jmenovatel * druhy.jmenovatel;
         int cit = citatel * druhy.jmenovatel + druhy.citatel * jmenovatel;
+        return new Zlomek(cit, jm);
+    }
+
+    /**
+     * Rozdíl zlomků
+     * @param druhy druhý zlomek
+     * @return
+     */
+    public Zlomek minus(Zlomek druhy) {
+        int jm = jmenovatel * druhy.jmenovatel;
+        int cit = citatel * druhy.jmenovatel - druhy.citatel * jmenovatel;
+        return new Zlomek(cit, jm);
+    }
+
+    /**
+     * Soucin zlomků
+     * @param druhy druhý zlomek
+     * @return
+     */
+    public Zlomek krat(Zlomek druhy) {
+        int jm = jmenovatel * druhy.jmenovatel;
+        int cit = citatel * druhy.citatel;
         return new Zlomek(cit, jm);
     }
 
